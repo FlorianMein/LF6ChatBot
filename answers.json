@@ -1,0 +1,7 @@
+{
+    "drucker": "Überprüfen Sie die Verbindung und Stellen Sie sicher, dass der Drucker ordnungsgemäß mit dem Computer verbunden ist entweder über USB Ethernet oder WLAN.",
+    "drucker ": "Überprüfen Sie auch die Stromversorgung des Druckers, um sicherzustellen, dass er eingeschaltet ist und mit Strom versorgt wird.",
+    "drucker  ": "Stellen Sie sicher, dass die neuesten Treiber für Ihren Drucker auf Ihrem Computer installiert sind. Besuchen Sie die Website des Druckerherstellers und laden Sie die aktuellen Treiber herunter und installieren Sie sie.",
+    "drucker   ": "Öffnen Sie die Druckerwarteschlange auf Ihrem Computer und überprüfen Sie, ob der Druckauftrag möglicherweise blockiert ist oder in der Warteschlange steckt. Löschen Sie gegebenenfalls hängende Druckaufträge und versuchen Sie erneut zu drucken.",
+    "drucker    ": "Stellen Sie sicher, dass die neuesten Treiber für Ihren Drucker auf Ihrem Computer installiert sind. Besuchen Sie die Website des Druckerherstellers und laden Sie die aktuellen Treiber herunter und installieren Sie sie."
+}
