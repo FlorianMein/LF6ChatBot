@@ -1,0 +1,21 @@
+Vor- und Nachteile
+
+Wie bei allen neuen Strukturen, die man in einem Unternehmen neu einbauen möchte, gilt es auch bei der EPK genau darüber abzuwägen, wie Nutzen und Aufwand im Verhältnis zueinander stehen. Um bei der Entscheidung zu helfen, folgt eine Auflistung der Vorteile und Nachteile:
+Vorteile
+
+1. Ein wichtiger Vorteil der EPK ist ihre einfache Lesbarkeit. Wegen der Anschaulichkeit und intuitiven Verständlichkeit der Darstellung können auch Nicht-Experten die Anwendung und Analyse der EPK leicht erlernen.
+
+2. Die EPK stellt einen Quasi-Industriestandard dar. Dementsprechend eignet sie sich sehr gut zur eindeutigen Darstellung von Prozessen, z.B. zur Anforderungsdefinition.
+
+3. Die Abhängigkeit von Ereignissen und Funktionen kann, im Vergleich zu den anderen Methoden zur Darstellung von Geschäftsprozessen, gut dargestellt werden. Durch die Vorschrift, dass nach jeder Funktion ein Ereignis folgt, ist der Status des jeweiligen Prozesses sehr transparent.
+
+4. Aufgrund der geringen Anzahl von Symbolen und Regeln ist der Aufwand zur Erstellung von EPKs gering.
+Nachteile
+
+1. Die Pflicht zur Modellierung eines Ereignisses nach jeder Funktion wirkt bei einigen Prozessen als unnötige Doppelung. So ist z.B. der Mehrwert des Ereignisses „Produkt versendet“ nach der Funktion „Produkt versenden“ gering. Diese Doppelung wirkt umso stärker, wenn es wenige Verzweigungen und logische Konnektoren in der jeweiligen EPK gibt.
+
+2. Kontrolltätigkeiten und kreativen Aktivitäten lassen sich tendenziell nicht gut mit einer EPK modellieren.
+
+3. Im Vergleich zu der erweiterten ereignisgesteuerten Prozesskette werden weitere wichtige Informationen, wie z.B. der jeweilige Akteur der Aktivität, nicht dargestellt.
+
+4. Weitere wesentliche Aspekte von Geschäftsprozessen, wie z.B. Durchführungsdauern und Wartezeiten, werden nicht erklärt.
