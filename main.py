@@ -29,7 +29,7 @@ def generiere_antwort(eingabe,stufe):
         
 
 # Funktion zum Starten des Chats
-def starte_chat():
+def starte_chat(level: int, base_dict: dict):
     print("Willkommen beim 1st-Level-Support-Chatbot!")
     print("Geben Sie 'Auf Wiedersehen' ein, um den Chat zu beenden.\n")
     print("Starten wir damit, ihr Problem einzugrenzen:\n")
@@ -38,8 +38,8 @@ def starte_chat():
     chat_aktiv = True
     while chat_aktiv:
         user_input = input("Nutzer: ")
-        user_input.lower()
-        if level == 0 and user_input != "Auf Wiedersehen":
+        user_input = user_input.lower()
+        if level == 0 and user_input != "auf wiedersehen":
             department = findDepartment(user_input, base_dict)
             if department == "notFound":
                 print("Bitte nutzen sie die vorgegebenen Antwortmöglichkeiten.\n")
@@ -48,9 +48,9 @@ def starte_chat():
         # antwort = generiere_antwort(user_input,level)
         # print("Chatbot: " + antwort)
 
-        if user_input == "Auf Wiedersehen":
+        if user_input == "auf wiedersehen":
             print("Auf Wiedersehen")
         
             chat_aktiv = False
 
-starte_chat()
+starte_chat(level, base_dict)
