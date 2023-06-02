@@ -1,15 +1,15 @@
 import json
-import stichwort
+from stichwort import findDepartment, whatistopic
 
 json_path_ans = "answers.json"
-anfrage_level = 0 # Wert auf welcher Anfragestufe sich das System bewegt
-anfrage_department = "" #Das zuständige Department
-anfrage_probleme = [] #Die erfassten Probleme
+level = 0 # Wert auf welcher Anfragestufe sich das System bewegt
+department = "" #Das zuständige Department
+probleme = [] #Die erfassten Probleme
 
 # Vordefinierte Antworten des Chatbots
 # JSON-Datei öffnen und Daten laden
 with open(json_path_ans, 'r') as file:
-    antworten = json.load(file)
+    base_dict = json.load(file)
 
 
 
@@ -17,13 +17,13 @@ with open(json_path_ans, 'r') as file:
 # Funktion zum Generieren einer Antwort basierend auf der Benutzereingabe
 def generiere_antwort(eingabe,stufe):
     if stufe == 0:
-        anfrage_department = stichwort.whatisdepartment(eingabe,antworten)
+        anfrage_department = findDepartment(eingabe,base_dict)
         if anfrage_department == "":
-            print("Das habe ich leider nicht verstanden. In welchem unserer Fachbereiche brauchen sie Unterstüzung")
+            print("Das habe ich leider nicht verstanden. In welchem unserer Fachbereiche brauchen sie Unterstützung")
         return anfrage_department
 
     if stufe == 1:
-        anfrage_probleme = stichwort.whatistopic(eingabe,antworten)
+        anfrage_probleme = whatistopic(eingabe,base_dict)
         return anfrage_probleme
         
         
@@ -32,16 +32,24 @@ def generiere_antwort(eingabe,stufe):
 def starte_chat():
     print("Willkommen beim 1st-Level-Support-Chatbot!")
     print("Geben Sie 'Auf Wiedersehen' ein, um den Chat zu beenden.\n")
-    print("Wie kann ich ihnen weiterhelfen?\n")
+    print("Starten wir damit, ihr Problem einzugrenzen:\n")
+    print("Wenn sie ein Problem im Bereich der Abrechnung haben, schreiben sie bitte Buchhaltung.\n")
 
     chat_aktiv = True
     while chat_aktiv:
-        benutzereingabe = input("Benutzereingabe: ")
-        antwort = generiere_antwort(benutzereingabe,anfrage_level)
-        print("Chatbot: " + antwort)
+        user_input = input("Nutzer: ")
+        user_input.lower()
+        if level == 0 and user_input != "Auf Wiedersehen":
+            department = findDepartment(user_input, base_dict)
+            if department == "notFound":
+                print("Bitte nutzen sie die vorgegebenen Antwortmöglichkeiten.\n")
+            else:
+                level = 1
+        # antwort = generiere_antwort(user_input,level)
+        # print("Chatbot: " + antwort)
 
-        if benutzereingabe == "Auf Wiedersehen":
-            print("Auf wiedersehen")
+        if user_input == "Auf Wiedersehen":
+            print("Auf Wiedersehen")
         
             chat_aktiv = False
 

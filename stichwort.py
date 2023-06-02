@@ -17,15 +17,12 @@ def whatistopic(string,problemlist):
     return topiclist
 
 # gibt die Zuständige abteilung an
-def whatisdepartment(string,departmentlist):
-    department = ""
-    string = string.lower()
-    string = string.replace(" ","")
+def findDepartment(input : str, departmentlist : dict) -> str:
+    input = input.replace(" ","")
 
-    for x in departmentlist:
-        # Methode find()
-        position = string.find(str(x))
-        if position != -1:
-            department = str(x)
+    for key in departmentlist:
+        if input == key:
+            return key
+
+    return "notFound"
     
-    return department
