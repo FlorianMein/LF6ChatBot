@@ -1,7 +1,6 @@
-
-import random
 import json
 import stichwort
+
 json_path_ans = "answers.json"
 anfrage_level = 0 # Wert auf welcher Anfragestufe sich das System bewegt
 anfrage_department = "" #Das zuständige Department
@@ -10,10 +9,7 @@ anfrage_probleme = [] #Die erfassten Probleme
 # Vordefinierte Antworten des Chatbots
 # JSON-Datei öffnen und Daten laden
 with open(json_path_ans, 'r') as file:
-    json_ans = json.load(file)
-
-
-antworten = json_ans
+    antworten = json.load(file)
 
 
 
@@ -23,7 +19,7 @@ def generiere_antwort(eingabe,stufe):
     if stufe == 0:
         anfrage_department = stichwort.whatisdepartment(eingabe,antworten)
         if anfrage_department == "":
-            print("Das habe ich leider dicht verstanden Welche unserer Fachbereiche brauchen sie Unterstüzung")
+            print("Das habe ich leider nicht verstanden. In welchem unserer Fachbereiche brauchen sie Unterstüzung")
         return anfrage_department
 
     if stufe == 1:
