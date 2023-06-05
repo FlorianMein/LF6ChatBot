@@ -3,8 +3,8 @@ from stichwort import findDepartment, whatistopic
 
 json_path_ans = "answers.json"
 level = 0 # Wert auf welcher Anfragestufe sich das System bewegt
-department = "" #Das zuständige Department
-probleme = [] #Die erfassten Probleme
+department = "" # Das zuständige Department
+probleme = [] # Die erfassten Probleme
 
 chat_arichv = []
 
@@ -38,12 +38,25 @@ def arichv_chat_to_db(chatlog: list):
 
 # Funktion zum Starten des Chats
 def starte_chat(level: int, base_dict: dict):
+<<<<<<< HEAD
     print("Chatbot: " + "Willkommen beim 1st-Level-Support-Chatbot!")
     print("Chatbot: " + "Mit der Ntzung dieses Servies stimmen sie unserer Datenschutzvereinbarung zu  diese finden sie unter 'URL' \n")
     print("Chatbot: " + "Geben Sie 'Auf Wiedersehen' ein, um den Chat zu beenden.\n")
     print("Chatbot: " + "Starten wir damit, ihr Problem einzugrenzen:\n")
     print("Chatbot: " + "Wenn sie ein Problem im Bereich der Abrechnung haben, schreiben sie bitte Buchhaltung.\n")
+=======
+    
+    # Erste Begrüßung durch den Bot und Hinweise zur Nutzung
+    print("Willkommen beim 1st-Level-Support-Chatbot!")
+    print("Geben Sie 'Auf Wiedersehen' ein, um den Chat zu beenden.\n")
+    print("Starten wir damit, ihr Problem einzugrenzen:\n")
+    print("Wenn sie ein Problem im Bereich der Abrechnung haben, schreiben sie bitte Buchhaltung.\n")
+    print("Wenn sie ein Problem mit ihrer Hardware haben, schreiben sie bitte Systemintegration.\n")
+    print("Wenn sie ein Problem mit ihrem Netzwerk haben, schreiben sie bitte Netzwerkbetreuung.\n")
+    print("Wenn sie ein Problem mit einer Software haben, schreiben sie bitte Softwareentwicklung.\n")
+>>>>>>> 586d31a859aef987a7f66b6fa11d159af02e0476
 
+    # Start des Bots
     chat_aktiv = True
     while chat_aktiv:
         user_input = input("Nutzer: ")
