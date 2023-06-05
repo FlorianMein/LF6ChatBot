@@ -1,22 +1,19 @@
-
-
-
-# gibt eine Liste aus mit möglichen Problemen
-def whatistopic(string,problemlist):
+# Gibt zu einem bekannten Problem mögliche Lösungsvorschläge zurück
+# Wenn das Problem nicht bekannt ist, wird "notFound" zurückgegeben
+def findSolution(string,problemlist):
 
     topiclist = []
     string = string.lower()
     string = string.replace(" ","")
 
     for x in problemlist:
-        # Methode find()
-        position = string.find(x)
         if position != -1:
             topiclist.append(x)
     
     return topiclist
 
-# gibt die Zuständige abteilung an
+# Gibt die zuständige Abteilung an
+# Wenn die keine Abteilung zu dem string existiert, wird "notFound" zurückgegeben
 def findDepartment(input : str, departmentlist : dict) -> str:
     input = input.replace(" ","")
 
@@ -25,4 +22,5 @@ def findDepartment(input : str, departmentlist : dict) -> str:
             return key
 
     return "notFound"
+    
     
