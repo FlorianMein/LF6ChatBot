@@ -1,12 +1,24 @@
 {
     "buchhaltung": "leer",
-    "netzwerkbetreuung": "leer",
+    "netzwerkbetreuung": {"internet":[""],
+                          "404":[""],
+                          "501":[""],
+                          "blockiert":[""]
+                            },
     "systemintegration": {
-        "drucker": "Überprüfen Sie die Verbindung und Stellen Sie sicher, dass der Drucker ordnungsgemäß mit dem Computer verbunden ist entweder über USB Ethernet oder WLAN.",
-        "drucker ": "Überprüfen Sie auch die Stromversorgung des Druckers, um sicherzustellen, dass er eingeschaltet ist und mit Strom versorgt wird.",
-        "drucker  ": "Stellen Sie sicher, dass die neuesten Treiber für Ihren Drucker auf Ihrem Computer installiert sind. Besuchen Sie die Website des Druckerherstellers und laden Sie die aktuellen Treiber herunter und installieren Sie sie.",
-        "drucker   ": "Öffnen Sie die Druckerwarteschlange auf Ihrem Computer und überprüfen Sie, ob der Druckauftrag möglicherweise blockiert ist oder in der Warteschlange steckt. Löschen Sie gegebenenfalls hängende Druckaufträge und versuchen Sie erneut zu drucken.",
-        "drucker    ": "Stellen Sie sicher, dass die neuesten Treiber für Ihren Drucker auf Ihrem Computer installiert sind. Besuchen Sie die Website des Druckerherstellers und laden Sie die aktuellen Treiber herunter und installieren Sie sie."
+        "drucker": ["Überprüfen Sie die Verbindung und Stellen Sie sicher, dass der Drucker ordnungsgemäß mit dem Computer verbunden ist entweder über USB Ethernet oder WLAN.",
+        "Überprüfen Sie auch die Stromversorgung des Druckers, um sicherzustellen, dass er eingeschaltet ist und mit Strom versorgt wird.",
+        "Stellen Sie sicher, dass die neuesten Treiber für Ihren Drucker auf Ihrem Computer installiert sind. Besuchen Sie die Website des Druckerherstellers und laden Sie die aktuellen Treiber herunter und installieren Sie sie.",
+        "Öffnen Sie die Druckerwarteschlange auf Ihrem Computer und überprüfen Sie, ob der Druckauftrag möglicherweise blockiert ist oder in der Warteschlange steckt. Löschen Sie gegebenenfalls hängende Druckaufträge und versuchen Sie erneut zu drucken.",
+        "Stellen Sie sicher, dass die neuesten Treiber für Ihren Drucker auf Ihrem Computer installiert sind. Besuchen Sie die Website des Druckerherstellers und laden Sie die aaktuellen Treiber herunter und installieren Sie sie."
+                        ],
+        "zugang": ["Überprüfen Sie Ihre Netzwerkverbindung: Stellen Sie sicher, dass Ihre Internetverbindung stabil ist und keine Probleme aufweist. Überprüfen Sie auch, ob andere Websites oder Server erreichbar sind. Möglicherweise liegt das Problem bei Ihrer Netzwerkverbindung. Überprüfen Sie die Server-URL oder IP-Adresse: Stellen Sie sicher, dass Sie die richtige URL oder IP-Adresse des Servers verwenden. Manchmal kann ein Tippfehler dazu führen, dass Sie keinen Zugang zum Server erhalten. Firewall-Einstellungen überprüfen: Überprüfen Sie, ob Ihre Firewall Einstellungen hat, die den Zugriff auf den Server blockieren. Stellen Sie sicher, dass die erforderlichen Ports für den Serverzugriff geöffnet sind. Kontaktieren Sie den Serveradministrator: Wenn Sie immer noch keinen Zugang zum Server haben, wenden Sie sich an den Serveradministrator oder den technischen Support des Servers. Beschreiben Sie das Problem und bitten Sie um Hilfe bei der Fehlerbehebung. Überprüfen Sie Ihre Anmeldeinformationen: Stellen Sie sicher, dass Sie die richtigen Anmeldeinformationen verwenden, um sich beim Server anzumelden. Überprüfen Sie Benutzernamen und Passwort auf Tippfehler oder stellen Sie sicher, dass Ihre Zugangsdaten gültig und aktiv sind. Überprüfen Sie die Serverstatusseite: Manchmal können Serverwartungen oder technische Probleme auftreten, die den Zugriff auf den Server beeinträchtigen. Überprüfen Sie die offizielle Serverstatusseite oder soziale Medien des Servers, um festzustellen, ob bekannt ist, dass der Server derzeit nicht erreichbar ist. Verwenden Sie eine alternative Verbindung oder einen anderen Standort: Wenn Sie weiterhin keinen Zugang zum Server haben, versuchen Sie es von einem anderen Standort aus oder verwenden Sie eine alternative Internetverbindung. Manchmal kann eine Netzwerkbeschränkung an Ihrem aktuellen Standort den Zugriff verhindern."],
+        "arbeitsspeicher":[""],
+        "prozessor":[""],
+        "bitlocker":[""]
     },
-    "softwareentwicklung": "leer"
+    "softwareentwicklung": {"bug":[""],
+                            "blackscreen":[""],
+                            "bluescreen":[""], 
+                            "freeze":[""]           }
 }
