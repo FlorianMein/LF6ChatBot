@@ -6,9 +6,9 @@
                          "Überprüfen Sie Ihre Hardware, insbesondere Router und Modem, auf mögliche Probleme",
                          "Aktualisieren Sie die Firmware Ihres Routers"],
  "verbindungsabbrüche":["Überprüfen Sie Ihre kabelgebundenen und drahtlosen Verbindungen auf mögliche Lockerungen oder lose Kabel",
-                          "Starten Sie Ihren Router und Modem neu",
-                          "Überprüfen Sie, ob Ihr Gerät mit dem richtigen Netzwerk verbunden ist",
-                          "Deaktivieren Sie vorübergehend Firewalls oder Sicherheitssoftware, um Konflikte zu vermeiden."]
+                        "Starten Sie Ihren Router und Modem neu",
+                        "Überprüfen Sie, ob Ihr Gerät mit dem richtigen Netzwerk verbunden ist",
+                        "Deaktivieren Sie vorübergehend Firewalls oder Sicherheitssoftware, um Konflikte zu vermeiden."]
                           
                             },
     "systemintegration": {
@@ -23,8 +23,7 @@
         "prozessor":[""],
         "bitlocker":[""]
     },
-    "softwareentwicklung": {"bug":[""],
-                            "blackscreen":[""],
-                            "bluescreen":[""], 
-                            "freeze":[""]           }
+    "softwareentwicklung": {
+                            "speicherleck":["Ein Speicherleck tritt auf, wenn ein Programm Speicher reserviert, aber nicht freigibt, was zu einem allmählichen Anstieg des Speicherverbrauchs führt. Die Lösung besteht darin, sicherzustellen, dass Speicher freigegeben wird, nachdem er nicht mehr benötigt wird, und speicherlecksensitive Programmierpraktiken wie Verwendung von Speicherzuweisungsfunktionen mit automatischer Speicherbereinigung (wie "smart pointers" in C++)."],
+                               }
 }
