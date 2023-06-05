@@ -1,6 +1,9 @@
 {
     "buchhaltung": "leer",
-    "netzwerkbetreuung": {"internet":[""],
+    "netzwerkbetreuung": {"langsame internetverbindung":["Überprüfen Sie die Bandbreite Ihres Internetdienstanbieters",
+    "Stellen Sie sicher, dass keine andere Anwendung die Netzwerkressourcen stark beansprucht",
+    "Überprüfen Sie Ihre Hardware, insbesondere Router und Modem, auf mögliche Probleme",
+    "Aktualisieren Sie die Firmware Ihres Routers"],
                           "404":[""],
                           "501":[""],
                           "blockiert":[""]
