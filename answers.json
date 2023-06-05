@@ -1,12 +1,15 @@
 {
     "buchhaltung": "leer",
-    "netzwerkbetreuung": {"langsame internetverbindung":["Überprüfen Sie die Bandbreite Ihres Internetdienstanbieters",
-    "Stellen Sie sicher, dass keine andere Anwendung die Netzwerkressourcen stark beansprucht",
-    "Überprüfen Sie Ihre Hardware, insbesondere Router und Modem, auf mögliche Probleme",
-    "Aktualisieren Sie die Firmware Ihres Routers"],
-                          "404":[""],
-                          "501":[""],
-                          "blockiert":[""]
+    "netzwerkbetreuung": 
+{"langsame internetverbindung":["Überprüfen Sie die Bandbreite Ihres Internetdienstanbieters",
+                         "Stellen Sie sicher, dass keine andere Anwendung die Netzwerkressourcen stark beansprucht",
+                         "Überprüfen Sie Ihre Hardware, insbesondere Router und Modem, auf mögliche Probleme",
+                         "Aktualisieren Sie die Firmware Ihres Routers"],
+ "verbindungsabbrüche":["Überprüfen Sie Ihre kabelgebundenen und drahtlosen Verbindungen auf mögliche Lockerungen oder lose Kabel",
+                          "Starten Sie Ihren Router und Modem neu",
+                          "Überprüfen Sie, ob Ihr Gerät mit dem richtigen Netzwerk verbunden ist",
+                          "Deaktivieren Sie vorübergehend Firewalls oder Sicherheitssoftware, um Konflikte zu vermeiden."]
+                          
                             },
     "systemintegration": {
         "drucker": ["Überprüfen Sie die Verbindung und Stellen Sie sicher, dass der Drucker ordnungsgemäß mit dem Computer verbunden ist entweder über USB Ethernet oder WLAN.",
