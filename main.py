@@ -1,5 +1,5 @@
 import json
-from stichwort import findDepartment, whatistopic
+from stichwort import findDepartment, findproblem
 
 json_path_ans = "answers.json"
 level = 0 # Wert auf welcher Anfragestufe sich das System bewegt
@@ -25,7 +25,7 @@ def generiere_antwort(eingabe,department,stufe):
         return anfrage_department
 
     if stufe == 1:
-        anfrage_probleme = whatistopic(eingabe,department,base_dict)
+        anfrage_probleme = findproblem(eingabe,department,base_dict)
         return anfrage_probleme
         
 # Funktion zum dump eines Chatverlaufs in eine Datenbank
@@ -38,23 +38,17 @@ def arichv_chat_to_db(chatlog: list):
 
 # Funktion zum Starten des Chats
 def starte_chat(level: int, base_dict: dict):
-<<<<<<< HEAD
+
+    # Erste Begrüßung durch den Bot und Hinweise zur Nutzung
     print("Chatbot: " + "Willkommen beim 1st-Level-Support-Chatbot!")
     print("Chatbot: " + "Mit der Ntzung dieses Servies stimmen sie unserer Datenschutzvereinbarung zu  diese finden sie unter 'URL' \n")
     print("Chatbot: " + "Geben Sie 'Auf Wiedersehen' ein, um den Chat zu beenden.\n")
     print("Chatbot: " + "Starten wir damit, ihr Problem einzugrenzen:\n")
     print("Chatbot: " + "Wenn sie ein Problem im Bereich der Abrechnung haben, schreiben sie bitte Buchhaltung.\n")
-=======
-    
-    # Erste Begrüßung durch den Bot und Hinweise zur Nutzung
-    print("Willkommen beim 1st-Level-Support-Chatbot!")
-    print("Geben Sie 'Auf Wiedersehen' ein, um den Chat zu beenden.\n")
-    print("Starten wir damit, ihr Problem einzugrenzen:\n")
-    print("Wenn sie ein Problem im Bereich der Abrechnung haben, schreiben sie bitte Buchhaltung.\n")
-    print("Wenn sie ein Problem mit ihrer Hardware haben, schreiben sie bitte Systemintegration.\n")
-    print("Wenn sie ein Problem mit ihrem Netzwerk haben, schreiben sie bitte Netzwerkbetreuung.\n")
-    print("Wenn sie ein Problem mit einer Software haben, schreiben sie bitte Softwareentwicklung.\n")
->>>>>>> 586d31a859aef987a7f66b6fa11d159af02e0476
+    print("Chatbot: " + "Wenn sie ein Problem mit ihrer Hardware haben, schreiben sie bitte Systemintegration.\n")
+    print("Chatbot: " + "Wenn sie ein Problem mit ihrem Netzwerk haben, schreiben sie bitte Netzwerkbetreuung.\n")
+    print("Chatbot: " + "Wenn sie ein Problem mit einer Software haben, schreiben sie bitte Softwareentwicklung.\n")
+
 
     # Start des Bots
     chat_aktiv = True
@@ -77,7 +71,6 @@ def starte_chat(level: int, base_dict: dict):
             if antwort == "notFound":
                 print("Chatbot: " + "Wir haben keine Lösung für ihr Problem .\n")
             else:
-
                 antwort = generiere_antwort(user_input,department,level)
                 chat_arichv.append(antwort)  # Chat wird für spätere nutzung gespeichert 
                 antwort_list = []
@@ -86,14 +79,18 @@ def starte_chat(level: int, base_dict: dict):
                         antwort_list.append(id)
             
 
-            for solution in antwort_list:
-                print("Chatbot: " + solution)
-                user_input = input("Konnte ich ihnen weiter helfen: (Ja/Nein)")
-                if user_input == "ja":
-                    print("Auf Wiedersehen")
+                for solution in antwort_list:
+                    print("Chatbot: " + solution)
+                    user_input = input("Konnte ich ihnen weiter helfen: (Ja/Nein)")
+                    if user_input == "ja":
+                        print("Auf Wiedersehen")
+                        chat_aktiv = False
+                        break
+                if chat_aktiv != False:    
+                    print("Chatbot: " +"Entschuldigen sie das ich ihnen nicht helfen konnte bitte wenden sie sich an "+ department)
                     chat_aktiv = False
                     break
-        if user_input != "auf wiedersehen":
+        if user_input == "auf wiedersehen":
             print("Auf Wiedersehen")
             chat_aktiv = False
             break
@@ -105,5 +102,5 @@ starte_chat(level, base_dict)
 
 
 #Test
-for x in range(len(base_dict["netzwerkbetreuung"]["langsame internetverbindung"])):
-    print(base_dict["netzwerkbetreuung"]["langsame internetverbindung"][x])
+#for x in range(len(base_dict["netzwerkbetreuung"]["langsame internetverbindung"])):
+#    print(base_dict["netzwerkbetreuung"]["langsame internetverbindung"][x])
