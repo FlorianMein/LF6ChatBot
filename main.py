@@ -15,7 +15,6 @@ with open(json_path_ans, 'r') as file:
 
 
 
-
 # Funktion zum Generieren einer Antwort basierend auf der Benutzereingabe
 def generiere_antwort(eingabe,department,stufe):
     if stufe == 0:
