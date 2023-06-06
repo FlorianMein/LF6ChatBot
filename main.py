@@ -97,7 +97,6 @@ def starte_chat(level: int, base_dict: dict):
                     for id in base_dict[department][problem]:
                         antwort_list.append(id)
             
-
                 for solution in antwort_list:
                     print("Chatbot: " + solution)
                     chat_archiv = append_archiv(chat_archiv, solution)
@@ -107,6 +106,7 @@ def starte_chat(level: int, base_dict: dict):
                         print("Auf Wiedersehen")
                         chat_aktiv = False
                         break
+                # Sollte keine funktionierende Lösung dabei gewesen sein, wird an die jeweilige Abteilung verwiesen
                 if chat_aktiv != False:    
                     print("Chatbot: " +"Entschuldigen Sie das ich ihnen nicht helfen konnte. Bitte wenden Sie sich an "+ department)
                     archiv_chat_to_db(chat_archiv)
