@@ -2,12 +2,22 @@ import json
 
 json_path_ans = "answers.json" # Pfad zur json Datei mit vorgefertigten Antworten-
 level = 0 # Wert auf welcher Anfragestufe sich das System bewegt
-chat_archiv = [] # Archiv des Chats für DB
+chat_archiv = "" # Archiv des Chats für DB
 
 # Vordefinierte Antworten des Chatbots
 # JSON-Datei öffnen und Daten laden
 with open(json_path_ans, 'r') as file:
     base_dict = json.load(file)
+
+# Erstellen des Archivtexts für die DB 
+def append_archiv(archiv : str, text : str):
+    new_archiv = ""
+    if archiv == "":
+        new_archiv = text
+    else:
+        new_archiv = archiv + " || " + text
+    
+    return new_archiv
 
 # Gibt eine Liste aus mit möglichen Problemen
 def findproblem(string : str, department : str, problemdict : dict):
