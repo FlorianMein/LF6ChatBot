@@ -1,10 +1,10 @@
 # Gibt eine Liste aus mit möglichen Problemen
-def findproblem(string : str, department : str, problemlist : dict):
+def findproblem(string : str, department : str, problemdict : dict):
 
     topiclist = []
     string = string.replace(" ","")
     
-    key_list = problemlist[department]
+    key_list = problemdict[department]
     for x in key_list:
         position = string.find(x)
         if position != -1:
