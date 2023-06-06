@@ -58,13 +58,14 @@ def starte_chat(level: int, base_dict: dict):
             else:
                 print("Chatbot: " + "Was ist ihr genaues Problem?")
                 level = 1
+                user_input = input("Nutzer: ")
         
         if level == 1 and user_input != "auf wiedersehen":
-            antwort = generiere_antwort(user_input,department,level)
+            antwort = findproblem(user_input,department,base_dict)
             if antwort == "notFound":
                 print("Chatbot: " + "Wir haben keine Lösung für ihr Problem .\n")
             else:
-                antwort = generiere_antwort(user_input,department,level)
+                antwort = findproblem(user_input,department,base_dict)
                 chat_arichv.append(antwort)  # Chat wird für spätere nutzung gespeichert 
                 antwort_list = []
                 for problem in antwort:
