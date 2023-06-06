@@ -19,7 +19,7 @@ def append_archiv(archiv : str, text : str):
     return new_archiv
 
 # Gibt eine Liste aus mit möglichen Problemen
-def findproblem(string : str, department : str, problemdict : dict):
+def find_problem(string : str, department : str, problemdict : dict):
 
     topiclist = []
     string = string.replace(" ","")
@@ -37,7 +37,7 @@ def findproblem(string : str, department : str, problemdict : dict):
 
 # Gibt die zuständige Abteilung an
 # Wenn die keine Abteilung zu dem string existiert, wird "notFound" zurückgegeben
-def findDepartment(input : str, departmentlist : dict) -> str:
+def find_department(input : str, departmentlist : dict) -> str:
     input = input.replace(" ","")
 
     for key in departmentlist:
@@ -70,7 +70,7 @@ def starte_chat(level: int, base_dict: dict):
 
         # Auf Level 0 soll festgestellt werden, in welcher der Abteilungen das Problem liegt
         if level == 0 and user_input != "auf wiedersehen":
-            department = findDepartment(user_input, base_dict)
+            department = find_department(user_input, base_dict)
             if department == "notFound":
                 print("Chatbot: " + "Bitte nutzen Sie die vorgegebenen Antwortmöglichkeiten.\n")
             else:
@@ -83,7 +83,7 @@ def starte_chat(level: int, base_dict: dict):
         if level == 1 and user_input != "auf wiedersehen":
            
             # Im letzten Input wird geguckt, ob das Problem bereits bekannt ist
-            antwort = findproblem(user_input,department,base_dict)
+            antwort = find_problem(user_input,department,base_dict)
             if antwort == "notFound":
                 # Ist das Problem nicht bekannt, wird an weiteren Support verwiesen...
                 print("Chatbot: " + "Ich habe aktuell keine Lösung für ihr Problem .\n" + "Bitte wenden Sie sich an "+ department)
