@@ -1,5 +1,4 @@
 import json
-from stichwort import findDepartment, findproblem
 
 json_path_ans = "answers.json" # Pfad zur json Datei mit vorgefertigten Antworten-
 level = 0 # Wert auf welcher Anfragestufe sich das System bewegt
@@ -9,9 +8,37 @@ chat_archiv = [] # Archiv des Chats für DB
 # JSON-Datei öffnen und Daten laden
 with open(json_path_ans, 'r') as file:
     base_dict = json.load(file)
+
+# Gibt eine Liste aus mit möglichen Problemen
+def findproblem(string : str, department : str, problemdict : dict):
+
+    topiclist = []
+    string = string.replace(" ","")
+    
+    key_list = problemdict[department]
+    for x in key_list:
+        position = string.find(x)
+        if position != -1:
+            topiclist.append(x)
+
+    if topiclist == []:
+        return "notFound"
+    
+    return topiclist
+
+# Gibt die zuständige Abteilung an
+# Wenn die keine Abteilung zu dem string existiert, wird "notFound" zurückgegeben
+def findDepartment(input : str, departmentlist : dict) -> str:
+    input = input.replace(" ","")
+
+    for key in departmentlist:
+        if input == key:
+            return key
+
+    return "notFound"
         
 # Funktion zum Dump eines Chatverlaufs in eine Datenbank
-def arichv_chat_to_db(chatlog: list):
+def archiv_chat_to_db(chatlog: list):
     print("Ihre Daten werden zur Verbesserung des Service gespeichert, wenn Sie etwas dagegen haben schreiben Sie jetzt \n Nein" )
     user_input = input("(Ja/Nein) ")
     if user_input != "Nein":
@@ -47,12 +74,11 @@ def starte_chat(level: int, base_dict: dict):
            
             # Im letzten Input wird geguckt, ob das Problem bereits bekannt ist
             antwort = findproblem(user_input,department,base_dict)
-            chat_archiv.append(antwort)
             if antwort == "notFound":
                 # Ist das Problem nicht bekannt, wird an weiteren Support verwiesen...
                 print("Chatbot: " + "Ich habe aktuell keine Lösung für ihr Problem .\n" + "Bitte wenden Sie sich an "+ department)
                 # und potentiell ein DB-Eintrag erstellt
-                arichv_chat_to_db(chat_archiv)
+                archiv_chat_to_db(chat_archiv)
                 print("Chatbot: " + "Haben Sie ein weiteres Problem in diesem Bereich? Ansonsten beenden Sie den Chat mit: Auf Wiedersehen\n")
             else:
                 # Ist das Problem bekannt, werden die möglichen Lösungen ausgegeben
@@ -64,13 +90,16 @@ def starte_chat(level: int, base_dict: dict):
 
                 for solution in antwort_list:
                     print("Chatbot: " + solution)
+                    chat_archiv.append(solution)
                     user_input = input("Konnte ich ihnen weiter helfen: (Ja/Nein) ")
+                    chat_archiv.append(user_input)
                     if user_input == "ja":
                         print("Auf Wiedersehen")
                         chat_aktiv = False
                         break
                 if chat_aktiv != False:    
                     print("Chatbot: " +"Entschuldigen Sie das ich ihnen nicht helfen konnte. Bitte wenden Sie sich an "+ department)
+                    archiv_chat_to_db(chat_archiv)
                     chat_aktiv = False
                     break
         if user_input == "auf wiedersehen":
