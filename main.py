@@ -40,14 +40,8 @@ def arichv_chat_to_db(chatlog: list):
 def starte_chat(level: int, base_dict: dict):
 
     # Erste Begrüßung durch den Bot und Hinweise zur Nutzung
-    print("Chatbot: " + "Willkommen beim 1st-Level-Support-Chatbot!")
-    print("Chatbot: " + "Mit der Ntzung dieses Servies stimmen sie unserer Datenschutzvereinbarung zu  diese finden sie unter 'URL' \n")
-    print("Chatbot: " + "Geben Sie 'Auf Wiedersehen' ein, um den Chat zu beenden.\n")
-    print("Chatbot: " + "Starten wir damit, ihr Problem einzugrenzen:\n")
-    print("Chatbot: " + "Wenn sie ein Problem im Bereich der Abrechnung haben, schreiben sie bitte Buchhaltung.\n")
-    print("Chatbot: " + "Wenn sie ein Problem mit ihrer Hardware haben, schreiben sie bitte Systemintegration.\n")
-    print("Chatbot: " + "Wenn sie ein Problem mit ihrem Netzwerk haben, schreiben sie bitte Netzwerkbetreuung.\n")
-    print("Chatbot: " + "Wenn sie ein Problem mit einer Software haben, schreiben sie bitte Softwareentwicklung.\n")
+    print("Chatbot: " + "Willkommen beim 1st-Level-Support-Chatbot! \n")
+    print("Chatbot: " + "Mit der Ntzung dieses Servies stimmen sie unserer Datenschutzvereinbarung zu  diese finden sie unter 'URL' \n"+ "Geben Sie 'Auf Wiedersehen' ein, um den Chat zu beenden.\n"+ "Starten wir damit, ihr Problem einzugrenzen:\n"+ "Starten wir damit, ihr Problem einzugrenzen:\n"+ "Wenn sie ein Problem im Bereich der Abrechnung haben, schreiben sie bitte Buchhaltung.\n"+ "Wenn sie ein Problem mit ihrer Hardware haben, schreiben sie bitte Systemintegration.\n"+ "Wenn sie ein Problem mit ihrem Netzwerk haben, schreiben sie bitte Netzwerkbetreuung.\n"+ "Wenn sie ein Problem mit ihrem Netzwerk haben, schreiben sie bitte Netzwerkbetreuung.\n"+ "Wenn sie ein Problem mit einer Software haben, schreiben sie bitte Softwareentwicklung.\n")
 
 
     # Start des Bots
