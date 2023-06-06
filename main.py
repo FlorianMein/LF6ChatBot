@@ -79,7 +79,7 @@ def starte_chat(level: int, base_dict: dict):
                 user_input = input("Nutzer: ").lower()
                 chat_archiv = append_archiv(chat_archiv, user_input)
 
-        # Auf Level 1 wird das konorete Problem in der jeweiligen Abteilung gesucht
+        # Auf Level 1 wird das konkrete Problem in der jeweiligen Abteilung gesucht
         if level == 1 and user_input != "auf wiedersehen":
            
             # Im letzten Input wird geguckt, ob das Problem bereits bekannt ist
