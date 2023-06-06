@@ -112,6 +112,7 @@ def starte_chat(level: int, base_dict: dict):
                     archiv_chat_to_db(chat_archiv)
                     chat_aktiv = False
                     break
+        # Ende des Chats
         if user_input == "auf wiedersehen":
             print("Auf Wiedersehen")
             chat_aktiv = False
