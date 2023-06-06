@@ -1,16 +1,11 @@
-
-
-
-# gibt eine Liste aus mit möglichen Problemen
-def findproblem(string : str ,department:str ,problemlist:dict):
+# Gibt eine Liste aus mit möglichen Problemen
+def findproblem(string : str, department : str, problemlist : dict):
 
     topiclist = []
-    string = string.lower()
     string = string.replace(" ","")
     
     key_list = problemlist[department]
     for x in key_list:
-        # Methode find()
         position = string.find(x)
         if position != -1:
             topiclist.append(x)
