@@ -2,7 +2,6 @@ import json
 
 json_path_ans = "answers.json" # Pfad zur json Datei mit vorgefertigten Antworten-
 level = 0 # Wert auf welcher Anfragestufe sich das System bewegt
-chat_archiv = "" # Archiv des Chats für DB
 
 # Vordefinierte Antworten des Chatbots
 # JSON-Datei öffnen und Daten laden
@@ -57,6 +56,7 @@ def archiv_chat_to_db(chatlog: list):
 
 # Funktion zum Starten des Chats
 def starte_chat(level: int, base_dict: dict):
+    chat_archiv = ""
 
     # Erste Begrüßung durch den Bot und Hinweise zur Nutzung
     print("Chatbot: " + "Willkommen beim 1st-Level-Support-Chatbot! \n")
@@ -66,7 +66,7 @@ def starte_chat(level: int, base_dict: dict):
     chat_aktiv = True
     while chat_aktiv:
         user_input = input("Nutzer: ").lower()
-        chat_archiv.append(user_input)
+        chat_archiv = append_archiv(chat_archiv, user_input)
 
         # Auf Level 0 soll festgestellt werden, in welcher der Abteilungen das Problem liegt
         if level == 0 and user_input != "auf wiedersehen":
@@ -77,7 +77,7 @@ def starte_chat(level: int, base_dict: dict):
                 print("Chatbot: " + "Was ist ihr genaues Problem?")
                 level = 1
                 user_input = input("Nutzer: ").lower()
-                chat_archiv.append(user_input)
+                chat_archiv = append_archiv(chat_archiv, user_input)
 
         # Auf Level 1 wird das konorete Problem in der jeweiligen Abteilung gesucht
         if level == 1 and user_input != "auf wiedersehen":
@@ -100,9 +100,9 @@ def starte_chat(level: int, base_dict: dict):
 
                 for solution in antwort_list:
                     print("Chatbot: " + solution)
-                    chat_archiv.append(solution)
+                    chat_archiv = append_archiv(chat_archiv, solution)
                     user_input = input("Konnte ich ihnen weiter helfen: (Ja/Nein) ")
-                    chat_archiv.append(user_input)
+                    chat_archiv = append_archiv(chat_archiv, user_input)
                     if user_input == "ja":
                         print("Auf Wiedersehen")
                         chat_aktiv = False
