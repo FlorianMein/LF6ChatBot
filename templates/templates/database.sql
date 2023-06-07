@@ -23,3 +23,9 @@ CREATE TABLE `Anfragen` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`abteilung`) REFERENCES Abteilung(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO abteilung (name, mail, telefon)
+VALUES ("Buchhaltung", "buchhaltung@itsolution.de", "0123/456789"),
+("Systemintegration", "sysint@itsolution.de", "0123/987654"),
+("Netzwerkbetreuung", "network@itsolution.de", "0123/456827"),
+("Softwareentwicklung", "software@itsolution.de", "0123/159753")
