@@ -1,1 +1,1 @@
-SELECT id FROM `abteilung` WHERE name = 'netzwerkbetreuung'
+SELECT id FROM `abteilung` WHERE name = '{{department}}'

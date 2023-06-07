@@ -1,6 +1,7 @@
 import json
 import mysql.connector
 from jinja2 import Environment, PackageLoader, select_autoescape
+from datetime import date
 
 json_path_ans = "answers.json" # Pfad zur json Datei mit vorgefertigten Antworten-
 level = 0 # Wert auf welcher Anfragestufe sich das System bewegt
@@ -50,21 +51,48 @@ def find_department(input : str, departmentlist : dict) -> str:
         
 # Funktion zum Dump eines Chatverlaufs in eine Datenbank
 def archiv_chat_to_db(chatlog: list, dep_id : int):
-    # Einrichten von Connction zur DB
+    # Öffnen der Connection zur DB
     connector = mysql.connector.connect(host="localhost", user="root", password="", database="solutions_it_support")
     cursor = connector.cursor()
 
     # Laden und rendern der SQL Templates
     env = Environment(loader=PackageLoader('templates', 'templates'), autoescape=select_autoescape())
     insert_template = env.get_template("insert.sql")
-    insert_template = insert_template.render()
 
+    datum = date.today()
 
     print("Ihre Daten werden zur Verbesserung des Service gespeichert, wenn Sie etwas dagegen haben schreiben Sie jetzt \n Nein" )
     user_input = input("(Ja/Nein) ")
     if user_input != "Nein":
         print("Ihre Daten helfen uns diesen Service zu verbessern.")
-        cursor.execute()
+        # Insert in die Datenbank
+        cursor.execute(insert_template.render(datum=datum, abteilung_id=dep_id, chatlog=chatlog))
+        connector.commit()
+
+        # Schließen der Connection
+        cursor.close()
+        connector.close()
+
+
+def get_dep_id(department : str):
+    # Öffnen der Connection zur DB
+    connector = mysql.connector.connect(host="localhost", user="root", password="", database="solutions_it_support")
+    cursor = connector.cursor()
+    
+    # Laden der SQL Templates
+    env = Environment(loader=PackageLoader('templates', 'templates'), autoescape=select_autoescape())
+    dep_id_template = env.get_template("dep_id.sql")
+
+    # Abfrage in der DB
+    cursor.execute(dep_id_template.render(department=department))
+    dep_id = cursor.fetchall()
+    dep_id = dep_id[0][0]
+
+    # Schließen der Connection
+    cursor.close()
+    connector.close()
+
+    return dep_id
 
 # Funktion zum Starten des Chats
 def starte_chat(level: int, base_dict: dict):
@@ -83,11 +111,7 @@ def starte_chat(level: int, base_dict: dict):
         # Auf Level 0 soll festgestellt werden, in welcher der Abteilungen das Problem liegt
         if level == 0 and user_input != "auf wiedersehen":
             department = find_department(user_input, base_dict)
-            # Department-IDs
-            # Buchhaltung = 1
-            # Systemintegration = 2
-            # Netzwerkbetreuung = 3
-            # Softwareentwicklung = 4
+            dep_id = get_dep_id(department)
             if department == "notFound":
                 print("Chatbot: " + "Bitte nutzen Sie die vorgegebenen Antwortmöglichkeiten.\n")
             else:
@@ -105,8 +129,8 @@ def starte_chat(level: int, base_dict: dict):
                 # Ist das Problem nicht bekannt, wird an weiteren Support verwiesen...
                 print("Chatbot: " + "Ich habe aktuell keine Lösung für ihr Problem .\n" + "Bitte wenden Sie sich an "+ department)
                 # und potentiell ein DB-Eintrag erstellt
-                archiv_chat_to_db(chat_archiv)
-                print("Chatbot: " + "Haben Sie ein weiteres Problem in diesem Bereich? Ansonsten beenden Sie den Chat mit: Auf Wiedersehen\n")
+                archiv_chat_to_db(chat_archiv, dep_id)
+                print("Chatbot: " + "Haben Sie ein weiteres Problem in diesem Bereich? Ansonsten beenden Sie den Chat mit: Auf Wiedersehen")
             else:
                 # Ist das Problem bekannt, werden die möglichen Lösungen ausgegeben
                 antwort_list = []
