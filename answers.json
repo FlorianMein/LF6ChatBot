@@ -12,7 +12,7 @@
                         "Ueberpruefen Sie, ob Ihr Geraet mit dem richtigen Netzwerk verbunden ist",
                         "Deaktivieren Sie vorübergehend Firewalls oder Sicherheitssoftware, um Konflikte zu vermeiden."]
                           
-},
+}, 
 
     "systemintegration": {
         "drucker": ["Ueberpruefen Sie die Verbindung und Stellen Sie sicher, dass der Drucker ordnungsgemaeß mit dem Computer verbunden ist entweder ueber USB Ethernet oder WLAN.",
