@@ -1,4 +1,6 @@
 import json
+import mysql.connector
+from jinja2 import Environment, PackageLoader, select_autoescape
 
 json_path_ans = "answers.json" # Pfad zur json Datei mit vorgefertigten Antworten-
 level = 0 # Wert auf welcher Anfragestufe sich das System bewegt
@@ -48,11 +50,21 @@ def find_department(input : str, departmentlist : dict) -> str:
         
 # Funktion zum Dump eines Chatverlaufs in eine Datenbank
 def archiv_chat_to_db(chatlog: list):
+    # Einrichten von Connction zur DB
+    connector = mysql.connector.connect(host="localhost", user="root", password="", database="solutions_it_support")
+    cursor = connector.cursor()
+
+    # Laden und rendern der SQL Templates
+    env = Environment(loader=PackageLoader('templates', 'templates'), autoescape=select_autoescape())
+    insert_template = env.get_template("insert.sql")
+    insert_template = insert_template.render()
+
+
     print("Ihre Daten werden zur Verbesserung des Service gespeichert, wenn Sie etwas dagegen haben schreiben Sie jetzt \n Nein" )
     user_input = input("(Ja/Nein) ")
     if user_input != "Nein":
         print("Ihre Daten helfen uns diesen Service zu verbessern.")
-        #Data Dump
+        cursor.execute()
 
 # Funktion zum Starten des Chats
 def starte_chat(level: int, base_dict: dict):
