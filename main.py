@@ -150,7 +150,7 @@ def starte_chat(level: int, base_dict: dict):
                 # Sollte keine funktionierende Lösung dabei gewesen sein, wird an die jeweilige Abteilung verwiesen
                 if chat_aktiv != False:    
                     print("Chatbot: " +"Entschuldigen Sie das ich ihnen nicht helfen konnte. Bitte wenden Sie sich an "+ department)
-                    archiv_chat_to_db(chat_archiv)
+                    archiv_chat_to_db(chat_archiv, dep_id)
                     chat_aktiv = False
                     break
         # Ende des Chats
