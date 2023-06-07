@@ -108,6 +108,11 @@ def get_dep_contact(dep_id: int):
     cursor.execute(dep_id_template.render(dep_id=dep_id))
     dep_contact = cursor.fetchall()
 
+    
+    # Schließen der Connection
+    cursor.close()
+    connector.close()
+
     return dep_contact
 
 
