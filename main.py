@@ -49,7 +49,7 @@ def find_department(input : str, departmentlist : dict) -> str:
     return "notFound"
         
 # Funktion zum Dump eines Chatverlaufs in eine Datenbank
-def archiv_chat_to_db(chatlog: list):
+def archiv_chat_to_db(chatlog: list, dep_id : int):
     # Einrichten von Connction zur DB
     connector = mysql.connector.connect(host="localhost", user="root", password="", database="solutions_it_support")
     cursor = connector.cursor()
@@ -83,6 +83,11 @@ def starte_chat(level: int, base_dict: dict):
         # Auf Level 0 soll festgestellt werden, in welcher der Abteilungen das Problem liegt
         if level == 0 and user_input != "auf wiedersehen":
             department = find_department(user_input, base_dict)
+            # Department-IDs
+            # Buchhaltung = 1
+            # Systemintegration = 2
+            # Netzwerkbetreuung = 3
+            # Softwareentwicklung = 4
             if department == "notFound":
                 print("Chatbot: " + "Bitte nutzen Sie die vorgegebenen Antwortmöglichkeiten.\n")
             else:
