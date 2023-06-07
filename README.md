@@ -3,7 +3,7 @@ Develop a small chat bot for it support.
 
 Installation
 
-das Chatboard beeinhaltet keine installtions möglichkeit und darf erstmal als Testweise nur lokal genutzt werden.
+das Chatbot beeinhaltet keine installtions möglichkeit und darf erstmal als Testweise nur lokal genutzt werden.
 
 Funktionen
 
@@ -14,11 +14,11 @@ Funktionen
 
 Beitrag
 
-Wir freuen uns über Beiträge zum Chatboard-Projekt. Wenn du einen Fehler gefunden hast, einen Verbesserungsvorschlag hast oder einen neuen Feature-Vorschlag machen möchtest, schreiben Sie Chatboard@it-Solutions.com an.
+Wir freuen uns über Beiträge zum Chatbot-Projekt. Wenn du einen Fehler gefunden hast, einen Verbesserungsvorschlag hast oder einen neuen Feature-Vorschlag machen möchtest, schreiben Sie Chatbot@it-Solutions.com an.
 Lizenz
 
-Das Chatboard-Projekt ist nicht lizenziert.
+Das Chatbot-Projekt ist nicht lizenziert.
 
 Unterstützung
 
-Bei Fragen oder Problemen kannst du dich an das Support-Team unter chatboard@it-solutions.com wenden.
+Bei Fragen oder Problemen kannst du dich an das Support-Team unter chatbot@it-solutions.com wenden.
