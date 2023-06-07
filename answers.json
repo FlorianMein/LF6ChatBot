@@ -14,7 +14,7 @@
     },
 
     "systemintegration": {
-        "drucker": ["Ueberpruefen Sie die Verbindung und Stellen Sie sicher, dass der Drucker ordnungsgemaeß mit dem Computer verbunden ist entweder ueber USB Ethernet oder WLAN.",
+        "drucker": ["Ueberpruefen Sie die Verbindung und Stellen Sie sicher, dass der Drucker ordnungsgemaess mit dem Computer verbunden ist entweder ueber USB Ethernet oder WLAN.",
             "Ueberpruefen Sie auch die Stromversorgung des Druckers, um sicherzustellen, dass er eingeschaltet ist und mit Strom versorgt wird.",
             "Stellen Sie sicher, dass die neuesten Treiber für Ihren Drucker auf Ihrem Computer installiert sind. Besuchen Sie die Website des Druckerherstellers und laden Sie die aktuellen Treiber herunter und installieren Sie sie.",
             "Oeffnen Sie die Druckerwarteschlange auf Ihrem Computer und ueberprüfen Sie, ob der Druckauftrag moeglicherweise blockiert ist oder in der Warteschlange steckt. Loeschen Sie gegebenenfalls haengende Druckauftraege und versuchen Sie erneut zu drucken.",
