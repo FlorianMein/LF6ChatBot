@@ -1,106 +1,121 @@
 import json
-from stichwort import findDepartment, findproblem
 
-json_path_ans = "answers.json"
+json_path_ans = "answers.json" # Pfad zur json Datei mit vorgefertigten Antworten-
 level = 0 # Wert auf welcher Anfragestufe sich das System bewegt
-department = "" # Das zuständige Department
-probleme = [] # Die erfassten Probleme
-
-chat_arichv = []
 
 # Vordefinierte Antworten des Chatbots
 # JSON-Datei öffnen und Daten laden
 with open(json_path_ans, 'r') as file:
     base_dict = json.load(file)
 
+# Erstellen des Archivtexts für die DB 
+def append_archiv(archiv : str, text : str):
+    new_archiv = ""
+    if archiv == "":
+        new_archiv = text
+    else:
+        new_archiv = archiv + " || " + text
+    
+    return new_archiv
 
+# Gibt eine Liste aus mit möglichen Problemen
+def find_problem(string : str, department : str, problemdict : dict):
 
+    topiclist = []
+    string = string.replace(" ","")
+    
+    key_list = problemdict[department]
+    for x in key_list:
+        position = string.find(x)
+        if position != -1:
+            topiclist.append(x)
 
-# Funktion zum Generieren einer Antwort basierend auf der Benutzereingabe
-def generiere_antwort(eingabe,department,stufe):
-    if stufe == 0:
-        anfrage_department = findDepartment(eingabe,base_dict)
-        if anfrage_department == "":
-            print("Das habe ich leider nicht verstanden. In welchem unserer Fachbereiche brauchen sie Unterstützung")
-        return anfrage_department
+    if topiclist == []:
+        return "notFound"
+    
+    return topiclist
 
-    if stufe == 1:
-        anfrage_probleme = findproblem(eingabe,department,base_dict)
-        return anfrage_probleme
+# Gibt die zuständige Abteilung an
+# Wenn die keine Abteilung zu dem string existiert, wird "notFound" zurückgegeben
+def find_department(input : str, departmentlist : dict) -> str:
+    input = input.replace(" ","")
+
+    for key in departmentlist:
+        if input == key:
+            return key
+
+    return "notFound"
         
-# Funktion zum dump eines Chatverlaufs in eine Datenbank
-def arichv_chat_to_db(chatlog: list):
-    print("Ihre Daten werrden zu verbesserung des Service gespecihert, wenn sie etwas dagen haben schreiben sie jetzt \n Nein" )
-    user_input = input("Ja/Nein")
+# Funktion zum Dump eines Chatverlaufs in eine Datenbank
+def archiv_chat_to_db(chatlog: list):
+    print("Ihre Daten werden zur Verbesserung des Service gespeichert, wenn Sie etwas dagegen haben schreiben Sie jetzt \n Nein" )
+    user_input = input("(Ja/Nein) ")
     if user_input != "Nein":
-        print("Ihre daten helfen uns diesen Service zu verbessern")
+        print("Ihre Daten helfen uns diesen Service zu verbessern.")
         #Data Dump
 
 # Funktion zum Starten des Chats
 def starte_chat(level: int, base_dict: dict):
+    chat_archiv = ""
 
     # Erste Begrüßung durch den Bot und Hinweise zur Nutzung
-    print("Chatbot: " + "Willkommen beim 1st-Level-Support-Chatbot!")
-    print("Chatbot: " + "Mit der Ntzung dieses Servies stimmen sie unserer Datenschutzvereinbarung zu  diese finden sie unter 'URL' \n")
-    print("Chatbot: " + "Geben Sie 'Auf Wiedersehen' ein, um den Chat zu beenden.\n")
-    print("Chatbot: " + "Starten wir damit, ihr Problem einzugrenzen:\n")
-    print("Chatbot: " + "Wenn sie ein Problem im Bereich der Abrechnung haben, schreiben sie bitte Buchhaltung.\n")
-    print("Chatbot: " + "Wenn sie ein Problem mit ihrer Hardware haben, schreiben sie bitte Systemintegration.\n")
-    print("Chatbot: " + "Wenn sie ein Problem mit ihrem Netzwerk haben, schreiben sie bitte Netzwerkbetreuung.\n")
-    print("Chatbot: " + "Wenn sie ein Problem mit einer Software haben, schreiben sie bitte Softwareentwicklung.\n")
-
+    print("Chatbot: " + "Willkommen beim 1st-Level-Support-Chatbot! \n")
+    print("Chatbot: " + "Mit der Nutzung dieses Servies stimmen Sie unserer Datenschutzvereinbarung zu. Diese finden Sie unter 'URL' \n"+ "Geben Sie 'Auf Wiedersehen' ein, um den Chat zu beenden.\n"+ "Starten wir damit, ihr Problem einzugrenzen:\n"+ "Wenn Sie ein Problem im Bereich der Abrechnung haben, schreiben Sie bitte Buchhaltung.\n"+ "Wenn Sie ein Problem mit ihrer Hardware haben, schreiben Sie bitte Systemintegration.\n"+ "Wenn Sie ein Problem mit ihrem Netzwerk haben, schreiben Sie bitte Netzwerkbetreuung.\n"+ "Wenn Sie ein Problem mit einer Software haben, schreiben Sie bitte Softwareentwicklung.\n")
 
     # Start des Bots
     chat_aktiv = True
     while chat_aktiv:
-        user_input = input("Nutzer: ")
-        chat_arichv.append(user_input)
-        user_input = user_input.lower()
+        user_input = input("Nutzer: ").lower()
+        chat_archiv = append_archiv(chat_archiv, user_input)
 
-
+        # Auf Level 0 soll festgestellt werden, in welcher der Abteilungen das Problem liegt
         if level == 0 and user_input != "auf wiedersehen":
-            department = findDepartment(user_input, base_dict)
+            department = find_department(user_input, base_dict)
             if department == "notFound":
-                print("Chatbot: " + "Bitte nutzen sie die vorgegebenen Antwortmöglichkeiten.\n")
+                print("Chatbot: " + "Bitte nutzen Sie die vorgegebenen Antwortmöglichkeiten.\n")
             else:
                 print("Chatbot: " + "Was ist ihr genaues Problem?")
                 level = 1
-        
+                user_input = input("Nutzer: ").lower()
+                chat_archiv = append_archiv(chat_archiv, user_input)
+
+        # Auf Level 1 wird das konkrete Problem in der jeweiligen Abteilung gesucht
         if level == 1 and user_input != "auf wiedersehen":
-            antwort = generiere_antwort(user_input,department,level)
+           
+            # Im letzten Input wird geguckt, ob das Problem bereits bekannt ist
+            antwort = find_problem(user_input,department,base_dict)
             if antwort == "notFound":
-                print("Chatbot: " + "Wir haben keine Lösung für ihr Problem .\n")
+                # Ist das Problem nicht bekannt, wird an weiteren Support verwiesen...
+                print("Chatbot: " + "Ich habe aktuell keine Lösung für ihr Problem .\n" + "Bitte wenden Sie sich an "+ department)
+                # und potentiell ein DB-Eintrag erstellt
+                archiv_chat_to_db(chat_archiv)
+                print("Chatbot: " + "Haben Sie ein weiteres Problem in diesem Bereich? Ansonsten beenden Sie den Chat mit: Auf Wiedersehen\n")
             else:
-                antwort = generiere_antwort(user_input,department,level)
-                chat_arichv.append(antwort)  # Chat wird für spätere nutzung gespeichert 
+                # Ist das Problem bekannt, werden die möglichen Lösungen ausgegeben
                 antwort_list = []
                 for problem in antwort:
                     for id in base_dict[department][problem]:
                         antwort_list.append(id)
             
-
                 for solution in antwort_list:
                     print("Chatbot: " + solution)
-                    user_input = input("Konnte ich ihnen weiter helfen: (Ja/Nein)")
+                    chat_archiv = append_archiv(chat_archiv, solution)
+                    user_input = input("Konnte ich ihnen weiter helfen: (Ja/Nein) ")
+                    chat_archiv = append_archiv(chat_archiv, user_input)
                     if user_input == "ja":
                         print("Auf Wiedersehen")
                         chat_aktiv = False
                         break
+                # Sollte keine funktionierende Lösung dabei gewesen sein, wird an die jeweilige Abteilung verwiesen
                 if chat_aktiv != False:    
-                    print("Chatbot: " +"Entschuldigen sie das ich ihnen nicht helfen konnte bitte wenden sie sich an "+ department)
+                    print("Chatbot: " +"Entschuldigen Sie das ich ihnen nicht helfen konnte. Bitte wenden Sie sich an "+ department)
+                    archiv_chat_to_db(chat_archiv)
                     chat_aktiv = False
                     break
+        # Ende des Chats
         if user_input == "auf wiedersehen":
             print("Auf Wiedersehen")
             chat_aktiv = False
             break
 
 starte_chat(level, base_dict)
-
-
-
-
-
-#Test
-#for x in range(len(base_dict["netzwerkbetreuung"]["langsame internetverbindung"])):
-#    print(base_dict["netzwerkbetreuung"]["langsame internetverbindung"][x])

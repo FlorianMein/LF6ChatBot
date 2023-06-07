@@ -14,11 +14,6 @@ CREATE TABLE `Abteilung` (
   UNIQUE(`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `anfragen`
---
 
 CREATE TABLE `Anfragen` (
   `id` int(50) NOT NULL AUTO_INCREMENT,
