@@ -1,0 +1,1 @@
+SELECT mail, telefon FROM `abteilung` WHERE id = {{dep_id}}

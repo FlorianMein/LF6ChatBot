@@ -61,7 +61,7 @@ def archiv_chat_to_db(chatlog: list, dep_id : int):
 
     datum = date.today()
 
-    print("Ihre Daten werden zur Verbesserung des Service gespeichert, wenn Sie etwas dagegen haben schreiben Sie jetzt \n Nein" )
+    print("Ihre Daten werden zur Verbesserung des Service gespeichert. Wenn Sie etwas dagegen haben schreiben Sie jetzt \n Nein" )
     user_input = input("(Ja/Nein) ")
     if user_input != "Nein":
         print("Ihre Daten helfen uns diesen Service zu verbessern.")
@@ -73,7 +73,7 @@ def archiv_chat_to_db(chatlog: list, dep_id : int):
         cursor.close()
         connector.close()
 
-
+# Abfrage der jeweiligen Abteilungs-ID aus der DB
 def get_dep_id(department : str):
     # Öffnen der Connection zur DB
     connector = mysql.connector.connect(host="localhost", user="root", password="", database="solutions_it_support")
@@ -93,6 +93,23 @@ def get_dep_id(department : str):
     connector.close()
 
     return dep_id
+
+# Abfrage der Kontaktdaten einer Abteilung aus der DB
+def get_dep_contact(dep_id: int):
+    # Öffnen der Connection zur DB
+    connector = mysql.connector.connect(host="localhost", user="root", password="", database="solutions_it_support")
+    cursor = connector.cursor()
+    
+    # Laden der SQL Templates
+    env = Environment(loader=PackageLoader('templates', 'templates'), autoescape=select_autoescape())
+    dep_id_template = env.get_template("dep_contact.sql")
+
+    # Abfrage in der DB
+    cursor.execute(dep_id_template.render(dep_id=dep_id))
+    dep_contact = cursor.fetchall()
+
+    return dep_contact
+
 
 # Funktion zum Starten des Chats
 def starte_chat(level: int, base_dict: dict):
@@ -127,7 +144,8 @@ def starte_chat(level: int, base_dict: dict):
             antwort = find_problem(user_input,department,base_dict)
             if antwort == "notFound":
                 # Ist das Problem nicht bekannt, wird an weiteren Support verwiesen...
-                print("Chatbot: " + "Ich habe aktuell keine Lösung für ihr Problem .\n" + "Bitte wenden Sie sich an "+ department)
+                contacts = get_dep_contact(dep_id)[0]
+                print("Chatbot: Entschuldigen Sie, dass ich ihnen nicht helfen konnte. Bitte wenden Sie sich an die Abteilung %s unter %s oder per Telefon unter %s" % (department.capitalize(), contacts[0], contacts[1]))
                 # und potentiell ein DB-Eintrag erstellt
                 archiv_chat_to_db(chat_archiv, dep_id)
                 print("Chatbot: " + "Haben Sie ein weiteres Problem in diesem Bereich? Ansonsten beenden Sie den Chat mit: Auf Wiedersehen")
@@ -148,8 +166,9 @@ def starte_chat(level: int, base_dict: dict):
                         chat_aktiv = False
                         break
                 # Sollte keine funktionierende Lösung dabei gewesen sein, wird an die jeweilige Abteilung verwiesen
-                if chat_aktiv != False:    
-                    print("Chatbot: " +"Entschuldigen Sie das ich ihnen nicht helfen konnte. Bitte wenden Sie sich an "+ department)
+                if chat_aktiv != False:
+                    contacts = get_dep_contact(dep_id)[0]
+                    print("Chatbot: Entschuldigen Sie, dass ich ihnen nicht helfen konnte. Bitte wenden Sie sich an die Abteilung %s unter %s oder per Telefon unter %s" % department.capitalize(), contacts[0], contacts[1])
                     archiv_chat_to_db(chat_archiv, dep_id)
                     chat_aktiv = False
                     break
